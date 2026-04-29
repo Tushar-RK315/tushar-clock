@@ -2,17 +2,20 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Tushar Clock</title>
+  <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
 
-  <h1 id="time">00:00:00</h1>
-  <p id="date">Loading date...</p>
+  <main class="container">
+    <h1 id="time" aria-live="polite">00:00:00</h1>
+    <p id="date">Loading date...</p>
 
-<button id="toggleFormat">Toggle Format</button> <br>
-<button id="toggleTheme">Toggle Theme</button>
+    <button id="toggleFormat">Toggle Format</button>
+    <button id="toggleTheme">Toggle Theme</button>
+  </main>
 
-<script src="js/main.js"></script>
-</body>
+  <script src="js/main.js" defer></script>
 </body>
 </html>
