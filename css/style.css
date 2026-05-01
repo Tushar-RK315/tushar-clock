@@ -1,89 +1,203 @@
 body {
   margin: 0;
-  height: 100vh;
+  overflow: hidden;
   font-family: 'Segoe UI', sans-serif;
-
-  display: flex;
-  justify-content: center;
-  align-items: center;
-
-  transition: 0.3s;
 }
 
-/* DARK */
-body.dark {
-  background: linear-gradient(-45deg, #0f2027, #203a43, #2c5364, #1a2a6c);
-  background-size: 400% 400%;
-  animation: bgMove 12s ease infinite;
-  color: #fff;
+/* SCENE */
+#scene {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+  overflow: hidden;
 }
 
-/* LIGHT */
-body.light {
-  background: linear-gradient(-45deg, #f8fafc, #e2e8f0, #cbd5f5, #e0f2fe);
-  background-size: 400% 400%;
-  animation: bgMove 12s ease infinite;
-  color: #0f172a;
+/* 🌞 DAY */
+body.light #scene {
+  background: linear-gradient(#87CEEB, #ffffff);
 }
 
-@keyframes bgMove {
-  0% { background-position: 0% }
-  50% { background-position: 100% }
-  100% { background-position: 0% }
+/* 🌙 NIGHT */
+body.dark #scene {
+  background: radial-gradient(circle, #0f2027, #000);
 }
 
-.container {
-  text-align: center;
-  padding: 40px 60px;
-  border-radius: 20px;
-  backdrop-filter: blur(10px);
+/* ⚡ AUTO */
+body.auto #scene {
+  background: linear-gradient(135deg, #667eea, #764ba2);
 }
 
-body.dark .container {
-  background: rgba(255,255,255,0.08);
+/* ☀️ SUN */
+.sun {
+  position: absolute;
+  top: 60px;
+  left: 80px;
+  width: 80px;
+  height: 80px;
+  background: yellow;
+  border-radius: 50%;
+  box-shadow: 0 0 60px yellow;
 }
 
-body.light .container {
-  background: rgba(255,255,255,0.9);
+/* 🌙 MOON */
+.moon {
+  position: absolute;
+  top: 60px;
+  right: 80px;
+  width: 60px;
+  height: 60px;
+  background: #ddd;
+  border-radius: 50%;
+  box-shadow: 0 0 30px #fff;
 }
 
-#time {
-  font-size: 4.5rem;
-  font-weight: bold;
+/* ⭐ STARS */
+.stars {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: radial-gradient(white 1px, transparent 1px);
+  background-size: 30px 30px;
+  animation: starsMove 60s linear infinite;
 }
 
-body.dark #time {
-  color: cyan;
-  text-shadow: 0 0 15px rgba(0,255,255,0.6);
+@keyframes starsMove {
+  from { background-position: 0 0; }
+  to { background-position: 200px 200px; }
 }
 
-body.light #time {
-  color: #0f172a;
+/* ☁️ CLOUD */
+.cloud {
+  position: absolute;
+  width: 150px;
+  height: 60px;
+  background: white;
+  border-radius: 50px;
+  animation: moveCloud 30s linear infinite;
 }
 
-#weather {
-  margin-top: 10px;
+@keyframes moveCloud {
+  from { transform: translateX(-200px); }
+  to { transform: translateX(100vw); }
 }
 
-button {
-  margin: 10px;
-  padding: 10px 20px;
-  border: none;
-  border-radius: 8px;
-  cursor: pointer;
+/* 🌧 RAIN */
+.rain {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: repeating-linear-gradient(
+    transparent,
+    transparent 2px,
+    rgba(255,255,255,0.2) 3px
+  );
+  animation: rain 0.3s linear infinite;
 }
 
-body.dark button {
-  background: #0072ff;
-  color: #fff;
+@keyframes rain {
+  from { transform: translateY(-100%); }
+  to { transform: translateY(100%); }
 }
 
-body.light button {
-  background: #2563eb;
-  color: #fff;
-}
-
-.fade {
+/* ⚡ THUNDER */
+.flash {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: white;
   opacity: 0;
-  transition: 0.3s;
+  animation: lightning 6s infinite;
+}
+
+@keyframes lightning {
+  0%, 95%, 100% { opacity: 0; }
+  96% { opacity: 0.8; }
+  97% { opacity: 0; }
+  98% { opacity: 0.6; }
+  99% { opacity: 0; }
+}
+
+/* ❄️ SNOW */
+.snow {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: radial-gradient(white 2px, transparent 2px);
+  background-size: 20px 20px;
+  animation: snow 10s linear infinite;
+}
+
+@keyframes snow {
+  from { transform: translateY(-100%); }
+  to { transform: translateY(100%); }
+}
+
+/* 🌫 FOG */
+.fog {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  backdrop-filter: blur(6px);
+}
+
+/* CARD */
+.main-card {
+  border-radius: 20px;
+  backdrop-filter: blur(15px);
+}
+
+body.light .main-card {
+  background: rgba(255,255,255,0.85);
+  color: black;
+}
+
+body.dark .main-card {
+  background: rgba(255,255,255,0.1);
+  color: white;
+}
+
+body.auto .main-card {
+  background: rgba(255,255,255,0.2);
+  color: white;
+}
+
+
+/* 🌸 SPRING */
+.spring-effect {
+  position: absolute;
+  font-size: 25px;
+  animation: fall 10s linear infinite;
+}
+
+/* ☀️ SUMMER */
+.summer-effect {
+  position: absolute;
+  top: 100px;
+  left: 200px;
+  width: 100px;
+  height: 100px;
+  background: orange;
+  border-radius: 50%;
+  box-shadow: 0 0 50px orange;
+}
+
+/* 🍂 AUTUMN */
+.autumn-effect {
+  position: absolute;
+  font-size: 30px;
+  animation: fall 8s linear infinite;
+}
+
+/* ❄️ WINTER */
+.winter-effect {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  filter: brightness(0.8);
+}
+
+@keyframes fall {
+  from { transform: translateY(-100px); }
+  to { transform: translateY(100vh); }
 }
