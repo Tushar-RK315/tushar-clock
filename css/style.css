@@ -1,10 +1,11 @@
+/* ===== BASE ===== */
 body {
   margin: 0;
   overflow: hidden;
   font-family: 'Segoe UI', sans-serif;
 }
 
-/* SCENE */
+/* ===== SCENE ===== */
 #scene {
   position: fixed;
   width: 100%;
@@ -13,76 +14,107 @@ body {
   overflow: hidden;
 }
 
-/* 🌞 DAY */
+/* ========================= */
+/* 🌞 LIGHT (DAY SKY) */
+/* ========================= */
 body.light #scene {
-  background: linear-gradient(#87CEEB, #ffffff);
+  background: linear-gradient(to top, #dbeafe, #87CEEB);
 }
 
-/* 🌙 NIGHT */
+/* ========================= */
+/* 🌙 DARK (REAL NIGHT SKY) */
+/* ========================= */
 body.dark #scene {
-  background: radial-gradient(circle, #0f2027, #000);
+  background: radial-gradient(circle at top, #0f2027, #000);
 }
 
-/* ⚡ AUTO */
+/* ========================= */
+/* ⚡ AUTO (TECH + DEPTH) */
+/* ========================= */
 body.auto #scene {
-  background: linear-gradient(135deg, #667eea, #764ba2);
+  background: linear-gradient(135deg, #1e3c72, #2a5298);
 }
 
+/* ========================= */
 /* ☀️ SUN */
+/* ========================= */
 .sun {
   position: absolute;
   top: 60px;
   left: 80px;
-  width: 80px;
-  height: 80px;
-  background: yellow;
+  width: 90px;
+  height: 90px;
+  background: radial-gradient(circle, #fff176, #ff9800);
   border-radius: 50%;
-  box-shadow: 0 0 60px yellow;
+  box-shadow: 0 0 80px rgba(255, 200, 0, 0.8);
+  animation: sunPulse 4s infinite alternate;
 }
 
+@keyframes sunPulse {
+  from { transform: scale(1); }
+  to { transform: scale(1.1); }
+}
+
+/* ========================= */
 /* 🌙 MOON */
+/* ========================= */
 .moon {
   position: absolute;
   top: 60px;
   right: 80px;
-  width: 60px;
-  height: 60px;
-  background: #ddd;
+  width: 70px;
+  height: 70px;
+  background: radial-gradient(circle, #eee, #aaa);
   border-radius: 50%;
-  box-shadow: 0 0 30px #fff;
+  box-shadow: 0 0 40px white;
 }
 
+.moon {
+  box-shadow: 
+    0 0 30px white,
+    0 0 80px rgba(255,255,255,0.4),
+    0 0 120px rgba(255,255,255,0.2);
+}
+
+/* ========================= */
 /* ⭐ STARS */
+/* ========================= */
 .stars {
   position: absolute;
   width: 100%;
   height: 100%;
   background: radial-gradient(white 1px, transparent 1px);
-  background-size: 30px 30px;
-  animation: starsMove 60s linear infinite;
+  background-size: 40px 40px;
+  animation: starsMove 80s linear infinite;
+  opacity: 0.8;
 }
 
 @keyframes starsMove {
   from { background-position: 0 0; }
-  to { background-position: 200px 200px; }
+  to { background-position: 300px 300px; }
 }
 
+/* ========================= */
 /* ☁️ CLOUD */
+/* ========================= */
 .cloud {
   position: absolute;
-  width: 150px;
-  height: 60px;
-  background: white;
+  width: 180px;
+  height: 70px;
+  background: rgba(255,255,255,0.9);
   border-radius: 50px;
-  animation: moveCloud 30s linear infinite;
+  filter: blur(1px);
+  animation: moveCloud 40s linear infinite;
 }
 
 @keyframes moveCloud {
-  from { transform: translateX(-200px); }
+  from { transform: translateX(-300px); }
   to { transform: translateX(100vw); }
 }
 
+/* ========================= */
 /* 🌧 RAIN */
+/* ========================= */
 .rain {
   position: absolute;
   width: 100%;
@@ -92,7 +124,7 @@ body.auto #scene {
     transparent 2px,
     rgba(255,255,255,0.2) 3px
   );
-  animation: rain 0.3s linear infinite;
+  animation: rain 0.25s linear infinite;
 }
 
 @keyframes rain {
@@ -100,32 +132,34 @@ body.auto #scene {
   to { transform: translateY(100%); }
 }
 
+/* ========================= */
 /* ⚡ THUNDER */
+/* ========================= */
 .flash {
   position: absolute;
   width: 100%;
   height: 100%;
   background: white;
   opacity: 0;
-  animation: lightning 6s infinite;
+  animation: lightning 5s infinite;
 }
 
 @keyframes lightning {
-  0%, 95%, 100% { opacity: 0; }
-  96% { opacity: 0.8; }
-  97% { opacity: 0; }
-  98% { opacity: 0.6; }
-  99% { opacity: 0; }
+  0%, 92%, 100% { opacity: 0; }
+  94% { opacity: 1; }
+  96% { opacity: 0; }
 }
 
+/* ========================= */
 /* ❄️ SNOW */
+/* ========================= */
 .snow {
   position: absolute;
   width: 100%;
   height: 100%;
   background: radial-gradient(white 2px, transparent 2px);
-  background-size: 20px 20px;
-  animation: snow 10s linear infinite;
+  background-size: 25px 25px;
+  animation: snow 12s linear infinite;
 }
 
 @keyframes snow {
@@ -133,71 +167,230 @@ body.auto #scene {
   to { transform: translateY(100%); }
 }
 
+/* ========================= */
 /* 🌫 FOG */
+/* ========================= */
 .fog {
   position: absolute;
   width: 100%;
   height: 100%;
-  backdrop-filter: blur(6px);
+  backdrop-filter: blur(8px);
+  opacity: 0.6;
 }
 
-/* CARD */
-.main-card {
-  border-radius: 20px;
-  backdrop-filter: blur(15px);
-}
-
-body.light .main-card {
-  background: rgba(255,255,255,0.85);
-  color: black;
-}
-
-body.dark .main-card {
-  background: rgba(255,255,255,0.1);
-  color: white;
-}
-
-body.auto .main-card {
-  background: rgba(255,255,255,0.2);
-  color: white;
-}
-
-
+/* ========================= */
 /* 🌸 SPRING */
-.spring-effect {
+/* ========================= */
+.spring-effect::after {
+  content: "🌸 🌸 🌸";
   position: absolute;
-  font-size: 25px;
+  width: 100%;
+  animation: fall 12s linear infinite;
+}
+
+/* ========================= */
+/* ☀️ SUMMER */
+/* ========================= */
+.summer-effect {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: radial-gradient(circle, rgba(255,200,0,0.2), transparent);
+}
+
+/* ========================= */
+/* 🍂 AUTUMN */
+/* ========================= */
+.autumn-effect::after {
+  content: "🍂 🍁 🍂";
+  position: absolute;
+  width: 100%;
   animation: fall 10s linear infinite;
 }
 
-/* ☀️ SUMMER */
-.summer-effect {
-  position: absolute;
-  top: 100px;
-  left: 200px;
-  width: 100px;
-  height: 100px;
-  background: orange;
-  border-radius: 50%;
-  box-shadow: 0 0 50px orange;
-}
-
-/* 🍂 AUTUMN */
-.autumn-effect {
-  position: absolute;
-  font-size: 30px;
-  animation: fall 8s linear infinite;
-}
-
+/* ========================= */
 /* ❄️ WINTER */
+/* ========================= */
 .winter-effect {
   position: absolute;
   width: 100%;
   height: 100%;
-  filter: brightness(0.8);
+  filter: brightness(0.85);
 }
 
 @keyframes fall {
   from { transform: translateY(-100px); }
   to { transform: translateY(100vh); }
 }
+
+/* ========================= */
+/* CARD */
+/* ========================= */
+
+.main-card {
+  border-radius: 25px;
+  backdrop-filter: blur(20px);
+  background: rgba(255,255,255,0.08);
+
+  box-shadow: 
+    0 20px 60px rgba(0,0,0,0.4),
+    inset 0 0 20px rgba(255,255,255,0.05);
+
+  border: 1px solid rgba(255,255,255,0.1);
+
+  transition: 0.4s;
+}
+
+/* LIGHT */
+body.light .main-card {
+  background: rgba(255,255,255,0.85);
+  color: #0f172a;
+}
+
+/* DARK */
+body.dark .main-card {
+  background: rgba(255,255,255,0.08);
+  color: white;
+}
+
+/* AUTO */
+body.auto .main-card {
+  background: rgba(255,255,255,0.15);
+  color: white;
+}
+
+/* ========================= */
+/* TASK UI */
+/* ========================= */
+#taskList li {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 6px;
+  border-radius: 10px;
+  transition: 0.3s;
+}
+
+#taskList li:hover {
+  transform: scale(1.03);
+}
+
+.completed {
+  text-decoration: line-through;
+  opacity: 0.6;
+}
+
+/* ========================= */
+/* PROGRESS */
+/* ========================= */
+.progress {
+  height: 10px;
+  border-radius: 20px;
+  overflow: hidden;
+}
+
+.progress-bar {
+  transition: 0.4s;
+}
+
+/* ========================= */
+/* INPUT FOCUS */
+/* ========================= */
+#taskInput:focus {
+  outline: none;
+  box-shadow: 0 0 10px rgba(0,123,255,0.5);
+}
+
+/* ========================= */
+/* SCHEDULE */
+/* ========================= */
+#scheduleList li {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-radius: 10px;
+  margin-bottom: 6px;
+  transition: 0.3s;
+}
+
+#scheduleList li:hover {
+  transform: scale(1.02);
+}
+
+.main-card {
+  animation: floatCard 6s ease-in-out infinite;
+}
+
+@keyframes floatCard {
+  0% { transform: translateY(0px); }
+  50% { transform: translateY(-12px); }
+  100% { transform: translateY(0px); }
+}
+
+.flash {
+  animation: lightning 5s infinite;
+}
+
+@keyframes lightning {
+  0%, 97%, 100% { opacity: 0; }
+  98% { opacity: 1; }
+  99% { opacity: 0; }
+}
+
+.stars {
+  background: radial-gradient(white 1px, transparent 1px);
+  background-size: 20px 20px;
+  animation: starsMove 80s linear infinite;
+}
+
+.fog {
+  animation: fogMove 20s linear infinite;
+}
+
+@keyframes fogMove {
+  from { transform: translateX(-50px); }
+  to { transform: translateX(50px); }
+}
+
+body.auto #scene {
+  animation: gridMove 10s linear infinite;
+}
+
+@keyframes gridMove {
+  from { background-position: 0 0; }
+  to { background-position: 100px 100px; }
+}
+
+.flash {
+  animation: lightning 5s infinite;
+}
+
+@keyframes lightning {
+  0%, 95%, 100% { opacity: 0; }
+  96% { opacity: 1; }
+  97% { opacity: 0; }
+  98% { opacity: 0.8; }
+  99% { opacity: 0; }
+}
+
+.rain {
+  background: repeating-linear-gradient(
+    transparent,
+    transparent 2px,
+    rgba(255,255,255,0.25) 3px
+  );
+  animation: rain 0.25s linear infinite;
+}
+
+button:hover {
+  transform: translateY(-3px) scale(1.02);
+  box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+}
+
+input:focus {
+  outline: none;
+  box-shadow: 0 0 10px rgba(0,123,255,0.5);
+  transform: scale(1.02);
+}
+
+

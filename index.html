@@ -18,6 +18,34 @@
 <div class="container d-flex justify-content-center align-items-center vh-100">
   <div class="card p-4 text-center main-card">
 
+<hr>
+
+  <h5>📋 Tasks</h5>
+
+  <div class="d-flex mb-2">
+  <input id="taskInput" type="text" class="form-control me-2" placeholder="Enter task...">
+  <button id="addTask" class="btn btn-success">Add</button>
+  </div>
+
+  <ul id="taskList" class="list-group mb-2"></ul>
+
+ <div class="progress mb-2">
+  <div id="progressBar" class="progress-bar bg-success" style="width: 0%"></div>
+</div>
+<p id="progressText">0%</p>
+<p id="dailyStats">Today: 0/0 completed</p>
+<hr>
+
+<h5>⏰ Schedule</h5>
+
+<div class="d-flex mb-2">
+  <input id="timeInput" type="time" class="form-control me-2">
+  <input id="scheduleInput" type="text" class="form-control me-2" placeholder="Task...">
+  <button id="addSchedule" class="btn btn-success">Add</button>
+</div>
+
+<ul id="scheduleList" class="list-group mb-2"></ul>
+
     <h1 id="time">00:00:00</h1>
     <p id="date"></p>
 
