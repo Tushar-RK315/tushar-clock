@@ -21,7 +21,7 @@ function startAlarm(text) {
   if (audioUnlocked) {
     alarmAudio = new Audio("assets/rrr.mp3");
     alarmAudio.loop = true;
-    alarmAudio.volume = 0.5;
+    alarmAudio.volume = 0.9;
     alarmAudio.play();
   } else {
     console.log("Click required ⚠️");
