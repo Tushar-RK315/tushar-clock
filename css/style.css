@@ -393,4 +393,37 @@ input:focus {
   transform: scale(1.02);
 }
 
+#focusOverlay {
+  position: fixed;
+  inset: 0;              /* top:0; right:0; bottom:0; left:0 */
+  background: #000;
+  color: #fff;
+  display: none;         /* default hidden */
+  z-index: 99999;
 
+  display: none;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+
+#focusBigTimer {
+  font-size: 120px;
+  font-weight: bold;
+  letter-spacing: 2px;
+}
+
+#focusEmergency {
+  position: absolute;
+  bottom: 20px;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 10px;
+  background: red;
+  color: white;
+}
+
+#focusEmergency {
+  z-index: 100000;
+  pointer-events: auto;
+}

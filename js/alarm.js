@@ -27,7 +27,9 @@ function startAlarm(text) {
     console.log("Click required ⚠️");
   }
 
+  // 🔴 Show buttons
   document.getElementById("stopAlarm").style.display = "block";
+  document.getElementById("snoozeAlarm").style.display = "block";
 }
 
 // 🛑 Stop Alarm
@@ -39,9 +41,24 @@ function stopAlarm() {
     alarmAudio.currentTime = 0;
   }
 
+  // 🔴 Hide buttons
   document.getElementById("stopAlarm").style.display = "none";
+  document.getElementById("snoozeAlarm").style.display = "none";
 }
 
-// 🔘 connect button
+// ⏳ Snooze Alarm (5 min later)
+function snoozeAlarm() {
+  stopAlarm();
+
+  setTimeout(() => {
+    startAlarm("⏰ Snoozed Reminder");
+  }, 120000); // 2 min
+}
+
+// 🔘 connect buttons
 document.getElementById("stopAlarm").onclick = stopAlarm;
+document.getElementById("snoozeAlarm").onclick = snoozeAlarm;
+
+// 🧼 Initially hidden
 document.getElementById("stopAlarm").style.display = "none";
+document.getElementById("snoozeAlarm").style.display = "none";
